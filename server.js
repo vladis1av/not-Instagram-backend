@@ -18,7 +18,7 @@ createRoutes(app, io);
 
 const start = async () => {
   try {
-    await mongoose.connect('mongodb://localhost/not-instagram', {
+    await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
