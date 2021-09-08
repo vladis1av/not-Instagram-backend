@@ -46,7 +46,7 @@ const createRoutes = (app, io) => {
   app.post('/login', UserController.login);
   app.post('/logout', UserController.logout);
   app.get('/refresh', UserController.refresh);
-  app.get('/activate/:hash', UserController.activate);
+  app.get('/activate', UserController.activate);
 
   app.get('/users', UserController.getUsers);
   app.get('/users/suggested/:max?', UserController.getSuggestedUsers);

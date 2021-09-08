@@ -6,8 +6,8 @@ export default function (req, res, next) {
     if (
       req.path === '/login' ||
       req.path === '/registration' ||
-      req.path === '/refresh' ||
-      req.path === '/activate'
+      req.path === '/activate' ||
+      req.path === '/refresh'
     ) {
       return next();
     }

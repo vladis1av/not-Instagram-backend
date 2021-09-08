@@ -30,7 +30,7 @@ class UserService {
 
     await mailService.sendActivationMail(
       email,
-      `${process.env.API_URL}/activate/${userConfirmLink}`,
+      `${process.env.CLIENT_URL}/activate/${userConfirmLink}`,
     );
 
     return {
@@ -40,14 +40,16 @@ class UserService {
   }
 
   async activate(confirmHash) {
-    const user = await UserModel.findOne({ confirmHash });
+    const user = await UserModel.findOneAndUpdate(
+      { confirmHash },
+      { confirmed: true },
+    );
 
     if (!user) {
       throw ApiError.BadRequest('Некорректная ссылка активации');
     }
 
-    user.confirmed = true;
-    await user.save();
+    return user;
   }
 
   async login(login, password) {

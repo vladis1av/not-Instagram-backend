@@ -35,10 +35,10 @@ class UserController {
 
   async activate(req, res, next) {
     try {
-      const confirmHash = req.params.hash;
+      const confirmHash = req.query.hash;
       await userService.activate(confirmHash);
 
-      return res.redirect(process.env.CLIENT_URL);
+      return res.status(200).send();
     } catch (error) {
       next(error);
     }
